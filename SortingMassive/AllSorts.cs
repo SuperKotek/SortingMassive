@@ -1,8 +1,21 @@
 ﻿using System;
 
+/// <summary>
+/// Класс, содержащий алгоритмы генерации и сортировки массивов различных типов
+/// </summary>
 public static class SortingAlgorithms
 {
     // Генерация массивов
+    /// <summary>
+    /// Генерирует массив случайных целых чисел в заданном диапазоне
+    /// </summary>
+    /// <param name="size">Размер массива
+    /// вводиться натуральным числом типа int</param>
+    /// <param name="min">Минимальное значение
+    /// вводиться целым числом типа int</param>
+    /// <param name="max">Максимальное значение
+    /// вводиться целым числом типа int</param>
+    /// <returns>Сгенерированный массив</returns>
     public static int[] GenerateIntArray(int size, int min, int max)
     {
         Random rnd = new Random();
@@ -12,6 +25,12 @@ public static class SortingAlgorithms
         return arr;
     }
 
+    /// <summary>
+    /// Генерирует бинарный массив (состоящий из 1 и 2)
+    /// </summary>
+    /// <param name="size">Размер массива
+    /// вводиться натуральным числом типа int</param>
+    /// <returns>Сгенерированный бинарный массив</returns>
     public static int[] GenerateN2Array(int size)
     {
         Random rnd = new Random();
@@ -21,6 +40,12 @@ public static class SortingAlgorithms
         return arr;
     }
 
+    /// <summary>
+    /// Генерирует массив цветов флага (W, B, R)
+    /// </summary>
+    /// <param name="size">Размер массива
+    /// вводиться натуральным числом типа int</param>
+    /// <returns>Сгенерированный массив цветов</returns>
     public static char[] GenerateFlagArray(int size)
     {
         char[] colors = { 'W', 'B', 'R' };
@@ -30,7 +55,12 @@ public static class SortingAlgorithms
             arr[i] = colors[rnd.Next(0, 3)];
         return arr;
     }
-
+    /// <summary>
+    /// Генерирует массив факультетов Хогвартса (G, H, R, S)
+    /// </summary>
+    /// <param name="size">Размер массива
+    /// вводиться натуральным числом типа int</param>
+    /// <returns>Сгенерированный массив факультетов</returns>
     public static char[] GenerateHogwartsArray(int size)
     {
         char[] houses = { 'G', 'H', 'R', 'S' };
@@ -42,6 +72,12 @@ public static class SortingAlgorithms
     }
 
     // Основные сортировки
+
+    /// <summary>
+    /// Сортировка пузырьком (сложность O(n^2))
+    /// </summary>
+    /// <param name="arr">Массив для сортировки
+    /// вводиться массивом целых чисел типа int</param>
     public static void BubbleSort(int[] arr)
     {
         for (int i = 0; i < arr.Length - 1; i++)
@@ -50,6 +86,11 @@ public static class SortingAlgorithms
                     (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
     }
 
+    /// <summary>
+    /// Сортировка вставками (сложность O(n^2))
+    /// </summary>
+    /// <param name="arr">Массив для сортировки
+    /// вводиться массивом целых чисел типа int</param>
     public static void InsertionSort(int[] arr)
     {
         for (int i = 1; i < arr.Length; i++)
@@ -65,6 +106,11 @@ public static class SortingAlgorithms
         }
     }
 
+    /// <summary>
+    /// Сортировка слиянием (сложность O(n log n) в среднем случае)
+    /// </summary>
+    /// <param name="arr">Массив для сортировки
+    /// вводиться массивом целых чисел типа int</param>
     public static void MergeSort(int[] arr)
     {
         if (arr.Length <= 1) return;
@@ -80,7 +126,9 @@ public static class SortingAlgorithms
         MergeSort(right);
         Merge(arr, left, right);
     }
-
+    /// <summary>
+    /// Вспомогательный метод для слияния двух подмассивов
+    /// </summary>
     private static void Merge(int[] arr, int[] left, int[] right)
     {
         int i = 0, l = 0, r = 0;
@@ -90,11 +138,19 @@ public static class SortingAlgorithms
         while (r < right.Length) arr[i++] = right[r++];
     }
 
+    /// <summary>
+    /// Быстрая сортировка (сложность O(n log n) в среднем случае)
+    /// </summary>
+    /// <param name="arr">Массив для сортировки
+    /// вводиться массивом целых чисел типа int</param>
     public static void QuickSort(int[] arr)
     {
         QuickSort(arr, 0, arr.Length - 1);
     }
 
+    /// <summary>
+    /// Рекурсивная реализация быстрой сортировки
+    /// </summary>
     private static void QuickSort(int[] arr, int low, int high)
     {
         if (low < high)
@@ -104,7 +160,9 @@ public static class SortingAlgorithms
             QuickSort(arr, pi + 1, high);
         }
     }
-
+    /// <summary>
+    /// Вспомогательный метод для разделения массива в быстрой сортировке
+    /// </summary>
     private static int Partition(int[] arr, int low, int high)
     {
         int pivot = arr[high];
@@ -117,6 +175,12 @@ public static class SortingAlgorithms
     }
 
     // Специальные сортировки
+
+    /// <summary>
+    /// Специальная сортировка для бинарного массива (разделение 1 и 2)
+    /// </summary>
+    /// <param name="arr">Бинарный массив для сортировки
+    /// вводиться массивом, состоящих из чисел 1 и 2 типа int</param>
     public static void SortN2(int[] arr)
     {
         int left = 0;
@@ -137,6 +201,11 @@ public static class SortingAlgorithms
         }
     }
 
+    /// <summary>
+    /// Сортировка массива цветов флага (голландский флаг)
+    /// </summary>
+    /// <param name="arr">Массив цветов для сортировки
+    /// вводиться массивом, состоящих из символов W, B и R типа char</param>
     public static void SortFlag(char[] arr)
     {
         int low = 0;
@@ -162,7 +231,11 @@ public static class SortingAlgorithms
             }
         }
     }
-
+    /// <summary>
+    /// Сортировка массива факультетов Хогвартса подсчетом
+    /// </summary>
+    /// <param name="arr">Массив факультетов для сортировки
+    /// вводиться массивом, состоящих из символов G, H, R и S типа char</param>
     public static void SortHogwarts(char[] arr)
     {
         int[] counts = new int[4]; // G,H,R,S
@@ -177,6 +250,12 @@ public static class SortingAlgorithms
     }
 
     // Утилиты
+    /// <summary>
+    /// Преобразует массив в строку с разделителями
+    /// </summary>
+    /// <typeparam name="T">Тип элементов массива</typeparam>
+    /// <param name="arr">Массив для преобразования</param>
+    /// <returns>Строковое представление массива</returns>
     public static string ArrayToString<T>(T[] arr) => string.Join(", ", arr);
 
 }
